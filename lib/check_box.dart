@@ -94,6 +94,8 @@ class _CheckBoxTileState extends State<CheckBoxTile> {
                 isChecked = value!;
                 if (isChecked) {
                   widgetList.data[widget.name].add(widget.label);
+                } else {
+                  widgetList.data[widget.name].remove(widget.label);
                 }
               });
             })),
