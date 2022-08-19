@@ -1,16 +1,14 @@
 # form_builder
+In this project i have Added a functionality to dynamically adding widgets to our App. Also I used Provider for Data manegement and state management.
 
-A new Flutter project.
+## Following are the Screenshots
 
-## Getting Started
+https://user-images.githubusercontent.com/91264300/185653253-be773aa5-8957-4909-b8bf-ef00371406dd.mp4
 
-This project is a starting point for a Flutter application.
+ScreenShot            |  Data
+:-------------------------:|:-------------------------:
+![]<img src="https://github.com/dawarepramod4/form_builder/blob/master/ScreenShots/Screenshot_1660922132.png" width="300"/> |  Console: ![Screenshot 2022-08-19 210904](https://user-images.githubusercontent.com/91264300/185656479-d570f5ab-1402-4321-8a62-e81592fbc6c2.jpg)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
