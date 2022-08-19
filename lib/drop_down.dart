@@ -34,14 +34,15 @@ class _DropDownState extends State<DropDown> {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "${widget.name}",
-            textAlign: TextAlign.left,
-          ),
+          Text(widget.name,
+              textAlign: TextAlign.left,
+              softWrap: true,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
           DropdownButton<String>(
             value: widget.dropdownValue,
-            icon: const Icon(Icons.add),
+            icon: const Icon(CupertinoIcons.arrow_down_circle),
             elevation: 16,
             style: const TextStyle(color: Colors.black),
             onChanged: (String? newValue) {

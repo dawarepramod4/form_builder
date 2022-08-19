@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:form_builder/add_checkbox.dart';
 import 'package:form_builder/add_dropdown.dart';
 import 'package:form_builder/check_box.dart';
 import 'package:form_builder/drop_down.dart';
@@ -56,7 +57,9 @@ class _FormBuilderState extends State<FormBuilder> {
                       context: context,
                       builder: (BuildContext context) => const AddDropDown());
                 } else {
-                  dynamicWidget.add(const CheckBox(name: 'Pramod',));
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => const AddCheckBox());
                 }
               });
             },
@@ -73,4 +76,3 @@ class _FormBuilderState extends State<FormBuilder> {
     );
   }
 }
-

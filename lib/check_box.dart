@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CheckBox extends StatefulWidget {
+class MyCheckBox extends StatefulWidget {
   final String name;
-  const CheckBox({super.key, required this.name});
+  final List<String> items;
+  const MyCheckBox({super.key, required this.name, required this.items});
 
   @override
-  State<CheckBox> createState() => _CheckBoxState();
+  State<MyCheckBox> createState() => _MyCheckBoxState();
 }
 
-class _CheckBoxState extends State<CheckBox> {
+class _MyCheckBoxState extends State<MyCheckBox> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,13 +30,59 @@ class _CheckBoxState extends State<CheckBox> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "${widget.name}",
+            widget.name,
             textAlign: TextAlign.left,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
+          Flexible(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: widget.items.length,
+                itemBuilder: ((context, index) {
+                  return CheckBoxTile(label: widget.items[index]);
+                })),
+          )
         ],
       ),
+    );
+  }
+}
+
+class CheckBoxTile extends StatefulWidget {
+  final String label;
+  CheckBoxTile({super.key, required this.label});
+
+  @override
+  State<CheckBoxTile> createState() => _CheckBoxTileState();
+}
+
+class _CheckBoxTileState extends State<CheckBoxTile> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Checkbox(
+            checkColor: Colors.white,
+            value: isChecked,
+            onChanged: ((value) {
+              setState(() {
+                isChecked = value!;
+              });
+            })),
+        Text(
+          widget.label,
+          textAlign: TextAlign.left,
+        ),
+      ],
     );
   }
 }
