@@ -2,26 +2,37 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:form_builder/widget_list.dart';
+import 'package:provider/provider.dart';
 
-class DropDown extends StatefulWidget {
+class CustomDropDown extends StatefulWidget {
   final List<String> items;
   final String name;
   var dropdownValue;
-  DropDown({super.key, required this.items, required this.name}) {
+  CustomDropDown({super.key, required this.items, required this.name}) {
     dropdownValue = items[0];
   }
   @override
-  State<DropDown> createState() => _DropDownState();
+  State<CustomDropDown> createState() => _CustomDropDownState();
 }
 
-class _DropDownState extends State<DropDown> {
+class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
+    WidgetList widgetList = Provider.of<WidgetList>(context);
     return Container(
       margin: const EdgeInsets.all(5),
       padding: const EdgeInsets.all(20),
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Colors.blue.shade100,
+            Colors.red.shade100,
+          ],
+        ),
         color: Colors.white,
         boxShadow: const [
           BoxShadow(
@@ -48,6 +59,7 @@ class _DropDownState extends State<DropDown> {
             onChanged: (String? newValue) {
               setState(() {
                 widget.dropdownValue = newValue!;
+                widgetList.addData(widget.name, widget.dropdownValue);
               });
             },
             items: widget.items.map<DropdownMenuItem<String>>((String value) {

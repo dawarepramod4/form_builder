@@ -29,6 +29,7 @@ class _FormBuilderState extends State<FormBuilder> {
   Widget build(BuildContext context) {
     WidgetList widgetlist = Provider.of<WidgetList>(context, listen: true);
     List<Widget> dynamicWidget = widgetlist.getItems();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Form Builder"),
@@ -44,32 +45,44 @@ class _FormBuilderState extends State<FormBuilder> {
                   itemBuilder: ((context, index) {
                     return dynamicWidget[index];
                   }))),
-          DropdownButton<String>(
-            value: dropdownValue,
-            icon: const Icon(Icons.add),
-            elevation: 16,
-            style: const TextStyle(color: Colors.black),
-            onChanged: (String? newValue) {
-              setState(() {
-                dropdownValue = newValue!;
-                if (dropdownValue == "DropDown") {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => const AddDropDown());
-                } else {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => const AddCheckBox());
-                }
-              });
-            },
-            items: <String>["DropDown", "CheckBox"]
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              DropdownButton<String>(
+                value: dropdownValue,
+                icon: const Icon(Icons.add),
+                elevation: 16,
+                style: const TextStyle(color: Colors.black),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownValue = newValue!;
+                    if (dropdownValue == "DropDown") {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              const AddDropDown());
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              const AddCheckBox());
+                    }
+                  });
+                },
+                items: <String>["DropDown", "CheckBox"]
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    print(widgetlist.getData());
+                  },
+                  child: const Text("Submit")),
+            ],
           )
         ]),
       ),

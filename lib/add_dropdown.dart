@@ -28,7 +28,7 @@ class _AddDropDownState extends State<AddDropDown> {
     // ignore: no_leading_underscores_for_local_identifiers
     _addDropDown() {
       name = nameController.text;
-      widgetList.addItem(DropDown(
+      widgetList.addItem(CustomDropDown(
         items: items,
         name: name,
       ));
@@ -41,7 +41,7 @@ class _AddDropDownState extends State<AddDropDown> {
           children: <Widget>[
             TextFormField(
               controller: nameController,
-              decoration: const InputDecoration(hintText: "Enter Options"),
+              decoration: const InputDecoration(hintText: "Enter Name of Field"),
             ),
             const SizedBox(
               height: 20,
@@ -56,7 +56,6 @@ class _AddDropDownState extends State<AddDropDown> {
             ElevatedButton(
                 onPressed: () {
                   items.add(messageController.text);
-                  print(items);
                   messageController.clear();
                 },
                 child: const Text("Add Options"))

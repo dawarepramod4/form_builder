@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -25,19 +26,23 @@ class _AddCheckBoxState extends State<AddCheckBox> {
     // ignore: no_leading_underscores_for_local_identifiers
     _addCheckBox() {
       name = nameController.text;
-      widgetList.addItem(MyCheckBox(items: items,
+      widgetList.addItem(MyCheckBox(
+        items: items,
         name: name,
       ));
     }
 
     return AlertDialog(
-      title: const Text('Add DropDown'),
+      title: Row(children: const [
+        Icon(CupertinoIcons.check_mark_circled_solid),
+        Text('Add CheckBox')
+      ]),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
             TextFormField(
               controller: nameController,
-              decoration: const InputDecoration(hintText: "Enter Options"),
+              decoration: const InputDecoration(hintText: "Enter Name"),
             ),
             const SizedBox(
               height: 20,

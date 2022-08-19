@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class WidgetList extends ChangeNotifier {
   List<Widget> dynamicWidget = [];
-
+  Map<String, dynamic> data = {};
   addItem(Widget widget) {
     dynamicWidget.add(widget);
     notifyListeners();
@@ -10,5 +10,13 @@ class WidgetList extends ChangeNotifier {
 
   getItems() {
     return dynamicWidget;
+  }
+
+  addData(key, value) {
+    data[key] = value;
+  }
+
+  getData() {
+    return data;
   }
 }
