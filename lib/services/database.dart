@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:form_builder/data.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,8 +10,8 @@ class DbService {
     try {
       Data data = Data(
         id: '',
-        question: '',
-        answer: null,
+        question: question,
+        answer: answer,
       );
 
       http.post(Uri.parse('$uri/api/question'),

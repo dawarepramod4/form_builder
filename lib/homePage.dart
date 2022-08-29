@@ -79,7 +79,9 @@ class _FormBuilderState extends State<FormBuilder> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    print(widgetlist.getData());
+                    widgetlist.getData().map((data) => {
+                      
+                    });
                   },
                   child: const Text("Submit")),
             ],
