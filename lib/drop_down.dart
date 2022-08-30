@@ -2,15 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:form_builder/widget_list.dart';
 import 'package:provider/provider.dart';
+
+import 'package:form_builder/widget_list.dart';
 
 class CustomDropDown extends StatefulWidget {
   final List<String> items;
   final String name;
+  final String element = "DropDown";
+  // ignore: prefer_typing_uninitialized_variables
   var dropdownValue;
-  CustomDropDown({super.key, required this.items, required this.name}) {
-    dropdownValue = items[0];
+  CustomDropDown({
+    Key? key,
+    required this.items,
+    required this.name,
+    required this.dropdownValue,
+  }) {
+    dropdownValue = dropdownValue;
   }
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
@@ -59,7 +67,11 @@ class _CustomDropDownState extends State<CustomDropDown> {
             onChanged: (String? newValue) {
               setState(() {
                 widget.dropdownValue = newValue!;
-                widgetList.addData(widget.name, widget.dropdownValue);
+                //add replace query
+                widgetList.updateAnswer(
+                      query: "replace",
+                      question: widget.name,
+                      answer: widget.dropdownValue);
               });
             },
             items: widget.items.map<DropdownMenuItem<String>>((String value) {

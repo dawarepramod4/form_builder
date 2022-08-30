@@ -6,7 +6,13 @@ import 'package:provider/provider.dart';
 class MyCheckBox extends StatefulWidget {
   final String name;
   final List<String> items;
-  const MyCheckBox({super.key, required this.name, required this.items});
+  final List<String> answer;
+  final element = 'CheckBox';
+  const MyCheckBox(
+      {super.key,
+      required this.name,
+      required this.items,
+      required this.answer});
 
   @override
   State<MyCheckBox> createState() => _MyCheckBoxState();
@@ -15,8 +21,7 @@ class MyCheckBox extends StatefulWidget {
 class _MyCheckBoxState extends State<MyCheckBox> {
   @override
   Widget build(BuildContext context) {
-    WidgetList widgetList = Provider.of<WidgetList>(context);
-    widgetList.addData(widget.name, []);
+    // WidgetList widgetList = Provider.of<WidgetList>(context);
     return Container(
       margin: const EdgeInsets.all(5),
       padding: const EdgeInsets.all(20),
@@ -57,6 +62,7 @@ class _MyCheckBoxState extends State<MyCheckBox> {
                   return CheckBoxTile(
                     label: widget.items[index],
                     name: widget.name,
+                    answer: widget.answer,
                   );
                 })),
           )
@@ -69,8 +75,16 @@ class _MyCheckBoxState extends State<MyCheckBox> {
 class CheckBoxTile extends StatefulWidget {
   final String label;
   final String name;
-  const CheckBoxTile({super.key, required this.label, required this.name});
+  final List<String> answer;
+  bool checking = false;
+  CheckBoxTile(
+      {super.key,
+      required this.label,
+      required this.name,
+      required this.answer}) {
+    checking = answer.contains(label);
 
+  }
   @override
   State<CheckBoxTile> createState() => _CheckBoxTileState();
 }
@@ -88,14 +102,22 @@ class _CheckBoxTileState extends State<CheckBoxTile> {
       children: [
         Checkbox(
             checkColor: Colors.white,
-            value: isChecked,
+            value: widget.checking,
             onChanged: ((value) {
               setState(() {
-                isChecked = value!;
-                if (isChecked) {
-                  widgetList.data[widget.name].add(widget.label);
+                widget.checking = value!;
+                if (widget.checking) {
+                  widgetList.updateAnswer(
+                      query: "add",
+                      question: widget.name,
+                      answer: widget.label);
+                  // widgetList.data[widget.name].add(widget.label);
                 } else {
-                  widgetList.data[widget.name].remove(widget.label);
+                  widgetList.updateAnswer(
+                      query: "remove",
+                      question: widget.name,
+                      answer: widget.label);
+                  // widgetList.data[widget.name].remove(widget.label);
                 }
               });
             })),

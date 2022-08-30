@@ -23,15 +23,15 @@ class _AddDropDownState extends State<AddDropDown> {
     );
     List<String> items = [];
     String name = "DropDown";
+    String element = "DropDown";
     final messageController = TextEditingController();
     final nameController = TextEditingController();
     // ignore: no_leading_underscores_for_local_identifiers
     _addDropDown() {
       name = nameController.text;
-      widgetList.addItem(CustomDropDown(
-        items: items,
-        name: name,
-      ));
+      widgetList.addData(
+          question: name, answer: [], element: element, options: items);
+      widgetList.addItem(CustomDropDown(items: items, name: name,dropdownValue: items[0],));
     }
 
     return AlertDialog(
@@ -41,7 +41,8 @@ class _AddDropDownState extends State<AddDropDown> {
           children: <Widget>[
             TextFormField(
               controller: nameController,
-              decoration: const InputDecoration(hintText: "Enter Name of Field"),
+              decoration:
+                  const InputDecoration(hintText: "Enter Name of Field"),
             ),
             const SizedBox(
               height: 20,

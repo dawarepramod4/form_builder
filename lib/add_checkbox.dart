@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:form_builder/drop_down.dart';
 import 'package:form_builder/widget_list.dart';
 import 'package:provider/provider.dart';
 import 'check_box.dart';
@@ -21,15 +22,16 @@ class _AddCheckBoxState extends State<AddCheckBox> {
     );
     List<String> items = [];
     String name = "CheckBox";
+    String element = "CheckBox";
     final messageController = TextEditingController();
     final nameController = TextEditingController();
     // ignore: no_leading_underscores_for_local_identifiers
     _addCheckBox() {
       name = nameController.text;
-      widgetList.addItem(MyCheckBox(
-        items: items,
-        name: name,
-      ));
+      widgetList.addData(
+          question: name, answer: [], element: element, options: items);
+
+      widgetList.addItem(MyCheckBox(items: items, name: name,answer: [],));
     }
 
     return AlertDialog(

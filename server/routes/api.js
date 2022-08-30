@@ -2,20 +2,24 @@ const express= require('express')
 const router = express.Router()
 const Question=require('../models/question')
 
-// router.get("/question", function(req,res,next){
-  
-//  Question.find({}).then(function(questions){
-//     res.send(questions)
-//   }).catch(next)
-// })
+router.get("/question", async function(req,res){
+  try{
+    const questions=await Question.find({});
+    res.json(questions);
+  }catch(e){
+    res.status(500).json({error:e.message})
+  }
+})
 
-router.post("/question",async function(req,res,next){
+router.post("/question",async function(req,res){
  try{
-  const {question,answer}=req.body;
-  let que= new Question({question,answer});
+  const {element,question,options,answer,}=req.body;
+  let que= new Question({question,answer,element,options});
   que=await que.save();
   res.json(que);
+
  }catch(e){
+
     res.status(500).json({error:e.message});
  }
 //  Question.create(req.body).then(function(question){

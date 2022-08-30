@@ -82,6 +82,14 @@ class _FormBuilderState extends State<FormBuilder> {
                     widgetlist.uploadData();
                   },
                   child: const Text("Submit")),
+              ElevatedButton(
+                  onPressed: () {
+                    widgetlist.downloadData();
+                    setState(() {
+                      
+                    });
+                  },
+                  child: const Text("Refresh"))
             ],
           )
         ]),

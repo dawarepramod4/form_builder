@@ -12,7 +12,6 @@ app.use(express.json());
 
 // app.get ('/api',(req,res)=>res.send('API WORKING!!'))
 app.use('/api',require('./routes/api'))
-
 app.use(function(err,req,res,next){
   res.status(422).send({error: err.message})
 })
