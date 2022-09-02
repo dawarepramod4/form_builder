@@ -111,13 +111,13 @@ class _CheckBoxTileState extends State<CheckBoxTile> {
                       query: "add",
                       question: widget.name,
                       answer: widget.label);
-                  // widgetList.data[widget.name].add(widget.label);
+                  
                 } else {
                   widgetList.updateAnswer(
                       query: "remove",
                       question: widget.name,
                       answer: widget.label);
-                  // widgetList.data[widget.name].remove(widget.label);
+                  
                 }
               });
             })),
