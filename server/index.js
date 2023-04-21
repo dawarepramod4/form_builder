@@ -2,7 +2,7 @@ const express =require('express')
 const mongoose = require('mongoose')
 
 const app =express();
-const DB="mongodb+srv://dawarepramod:dawarepramod@cluster0.lsbzpu0.mongodb.net/?retryWrites=true&w=majority"
+const DB="mongodb+srv://dawarepramod:dawarepramod@cluster0.lsbzpu0.mongodb.net/test"
 mongoose.connect(DB).then(()=>{
   console.log("connection successful")
 })
